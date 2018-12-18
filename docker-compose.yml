@@ -1,0 +1,50 @@
+version: '2'
+ 
+services:
+  app1:
+    build:
+      context:  ./app1
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    expose:
+      - "8081"
+
+  app2:
+    build:
+      context:  ./app2
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    expose:
+      - "8082"
+
+  app3:
+    build:
+      context:  ./app3
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8083"
+    expose:
+      - "8083"
+
+  app4:
+    build:
+      context:  ./app4
+      dockerfile: Dockerfile
+    ports:
+      - "8084:8084"
+    expose:
+      - "8084"
+ 
+  proxy:
+    build:
+      context:  ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    links:
+      - app1
+      - app2
+      - app3
+      - app4
